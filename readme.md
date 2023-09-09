@@ -1,3 +1,4 @@
+
 Django Email System
 
 **Project Description**: This Django-based Email Marketing System allows you to manage subscribers, create and send email campaigns to subscribed users.
