@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>List of Subscribers</h1>
+    <ul>
+        {% for subscriber in subscribers %}
+            <li>
+                <div>
+                    <strong>{{ subscriber.first_name }}</strong> - {{ subscriber.email }}
+                </div>
+                <form method="post" action="{% url 'mark-inactive' subscriber.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Mark as Inactive</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

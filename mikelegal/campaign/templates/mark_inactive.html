@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Subscriber as Inactive</title>
+</head>
+<body>
+    <h1>Mark Subscriber as Inactive</h1>
+    <form method="post" action="{% url 'mark-inactive' subscriber.id %}">
+        {% csrf_token %}
+        <p>Are you sure you want to mark {{ subscriber.email }} as inactive?</p>
+        <input type="submit" value="Mark Inactive">
+    </form>
+</body>
+</html>

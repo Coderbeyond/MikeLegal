@@ -1,0 +1,44 @@
+{% block content %}
+<h2>Create Campaign</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required><br>
+
+    <label for="preview_text">Preview Text:</label>
+    <textarea id="preview_text" name="preview_text" required></textarea><br>
+
+    <label for="article_url">Article URL:</label>
+    <input type="url" id="article_url" name="article_url" required><br>
+
+    <label for="html_content">HTML Content:</label>
+    <textarea id="html_content" name="html_content" required></textarea><br>
+
+    <label for="plain_text_content">Plain Text Content:</label>
+    <textarea id="plain_text_content" name="plain_text_content" required></textarea><br>
+
+    <label for="published_date">Published Date:</label>
+    <input type="date" id="published_date" name="published_date" required><br>
+
+    <button type="submit">Create Campaign</button>
+</form>
+
+<hr>
+
+<h2>List of Campaigns</h2>
+<ul>
+    {% for campaign in campaigns %}
+        <li>
+            <strong>Subject:</strong> {{ campaign.subject }}<br>
+            <strong>Preview Text:</strong> {{ campaign.preview_text }}<br>
+            <strong>Published Date:</strong> {{ campaign.published_date }}<br>
+            <a href="{{ campaign.article_url }}" target="_blank">Read Article</a>
+
+            <a href="{% url 'send_email' campaign.id %}">Send Email</a>
+
+        </li>
+    {% empty %}
+        <li>No campaigns found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
